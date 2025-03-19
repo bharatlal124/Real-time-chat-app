@@ -1,10 +1,58 @@
-.messageBox {
+/* .messageBox {
   background: #F3F3F3;
   border-radius: 20px;
   padding: 5px 20px;
   color: white;
   display: inline-block;
   max-width: 80%;
+} */
+.messageBox {
+  background:#F3F3F3;  
+  border-radius: 0px 15px 15px 10px;  
+  padding: 8px 12px;  
+  color: black;  
+  display: inline-block;
+  max-width: 60%;
+  position: relative;
+  font-size: 14px;
+  word-wrap: break-word;
+}
+ 
+.messageBox::after {
+  content: "";
+  position: absolute;
+  bottom: 51px;
+  left: -5px;  
+  width: 20px;
+  height: 20px;
+  background:#F3F3F3;
+  rotate: 223deg;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+.messageBox2 {
+  /* background:#F3F3F3;   */
+  border-radius: 15px 0px 10px 15px;  
+  padding: 8px 12px;  
+  color: black;  
+  display: inline-block;
+  max-width: 60%;
+  position: relative;
+  font-size: 14px;
+  word-wrap: break-word;
+}
+ 
+.messageBox2::after {
+  content: "";
+  position: absolute;
+  display: flex; 
+  justify-content: flex-end !important;
+  bottom: 51px; 
+  right: -5px;
+  width: 20px;
+  height: 20px;
+  background:#2979FF;
+  rotate: 223deg;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
 }
 
 .messageText {
@@ -13,6 +61,7 @@
   float: left;
   font-size: 1.1em;
   word-wrap: break-word;
+  margin:5px;
 }
 
 .messageText img {
@@ -32,6 +81,10 @@
   font-family: Helvetica;
   color: #828282;
   letter-spacing: 0.3px;
+  margin:0;
+}
+.messageBox2 .sentText{
+  color: black;
 }
 
 .pl-10 {
