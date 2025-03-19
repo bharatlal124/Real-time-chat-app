@@ -5,6 +5,7 @@
   color: white;
   height: 60%;
   justify-content: space-between;
+  display:none;
 }
 
 .activeContainer {
