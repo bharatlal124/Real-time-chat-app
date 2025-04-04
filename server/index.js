@@ -1,9 +1,12 @@
 require("dotenv").config();
+
+const mongoose = require("mongoose");
 const http = require("http");
 const express = require("express");
 const socketio = require("socket.io");
 const cors = require("cors");
 
+const Message = require("./models/message"); // Import Message model
 const { addUser, removeUser, getUser, getUsersInRoom } = require("./users");
 const router = require("./router");
 
@@ -16,13 +19,21 @@ const io = socketio(server, {
 app.use(cors());
 app.use(router);
 
+// 🔌 Connect to MongoDB
+mongoose
+  .connect(process.env.Mongodb, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("✅ MongoDB connected"))
+  .catch((err) => console.error("❌ MongoDB connection error:", err));
+
+// 🎯 Real-time socket handling
 io.on("connection", (socket) => {
   console.log("New connection:", socket.id);
 
   socket.on("join", ({ name, room }, callback) => {
-    if (!name || !room) {
-      return callback("Username and room are required.");
-    }
+    if (!name || !room) return callback("Username and room are required.");
 
     const { error, user } = addUser({ id: socket.id, name, room });
 
@@ -47,11 +58,20 @@ io.on("connection", (socket) => {
     callback();
   });
 
-  socket.on("sendMessage", (message, callback) => {
+  socket.on("sendMessage", async (message, callback) => {
     const user = getUser(socket.id);
+    if (!user) return callback("User not found.");
 
-    if (!user) {
-      return callback("User not found.");
+    const newMessage = new Message({
+      user: user.name,
+      room: user.room,
+      text: message,
+    });
+
+    try {
+      await newMessage.save(); // 💾 Save to MongoDB
+    } catch (error) {
+      console.error("Failed to save message:", error);
     }
 
     io.to(user.room).emit("message", { user: user.name, text: message });
@@ -79,4 +99,4 @@ io.on("connection", (socket) => {
 });
 
 const PORT = process.env.PORT || 5000;
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+server.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
