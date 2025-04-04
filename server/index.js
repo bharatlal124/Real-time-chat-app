@@ -13,7 +13,9 @@ const router = require("./router");
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server, {
-  cors: { origin: "http://localhost:3000", credentials: true },
+  // cors: { origin: "http://localhost:3000", credentials: true },
+  origin: ["http://localhost:3000", "https://bharat-chat-app.vercel.app"], // ✅ Add your Vercel frontend domain here
+  credentials: true,
 });
 
 app.use(cors());
