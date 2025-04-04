@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import React, { useState, useEffect } from "react";
 import queryString from 'query-string';
 import io from "socket.io-client";
@@ -24,18 +26,29 @@ const Chat = ({ location }) => {
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
-
-    socket = io(ENDPOINT);
-
     setRoom(room);
-    setName(name)
-
-    socket.emit('join', { name, room }, (error) => {
-      if(error) {
-        alert(error);
-      }
+    setName(name);
+  
+    // Connect to socket
+    socket = io(ENDPOINT);
+  
+    // Join room
+    socket.emit("join", { name, room }, (error) => {
+      if (error) alert(error);
     });
-  }, [ENDPOINT, location.search]);
+  
+    // Fetch chat history
+    axios.get(`http://localhost:5000/messages/${room}`)
+      .then(res => {
+        const historyMessages = res.data.map(msg => ({
+          user: msg.user,
+          text: msg.text
+        }));
+        setMessages(historyMessages);
+      })
+      .catch(err => console.error("Error loading history", err));
+  }, [location.search]);
+  
   
   useEffect(() => {
     socket.on('message', message => {
