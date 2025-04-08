@@ -13,7 +13,8 @@ import './Chat.css';
 
 // 👇 Replace with your local or deployed backend URL
 // const ENDPOINT = 'http://localhost:5000';
-const ENDPOINT = 'https://real-time-chat-app-cisd.onrender.com/';
+// const ENDPOINT = 'https://real-time-chat-app-cisd.onrender.com/';
+const ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
 let socket;
 
