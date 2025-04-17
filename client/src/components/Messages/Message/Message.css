@@ -75,6 +75,7 @@
   justify-content: flex-end;
   padding: 0 5%;
   margin-top: 3px;
+  align-items: flex-start;
 }
 
 .sentText {
@@ -127,4 +128,29 @@
 
 .backgroundLight {
   background: #F3F3F3;
+}
+
+
+
+/* New avatar styles */
+.avatarContainer {
+  display: flex;
+  align-items: flex-start;
+  margin: 0 8px;
+}
+
+.userAvatar {
+  border-radius: 50%;
+}
+
+.sentAvatar {
+  color: #2979ff;
+  /* background-color: white; */
+  border-radius: 50%;
+}
+
+.receivedAvatar {
+  color: #a1a1a1;
+  /* background-color: white; */
+  border-radius: 50%;
 }
