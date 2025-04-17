@@ -1,4 +1,5 @@
 import React from 'react';
+import { UserCircle } from "lucide-react"
 
 import './Message.css';
 
@@ -22,10 +23,16 @@ const Message = ({ message: { text, user }, name }) => {
             <p className="sentText">{trimmedName}</p>
             <p className="messageText colorWhite">{ReactEmoji.emojify(text)}</p>
           </div>
+              <div className="avatarContainer">
+                  <UserCircle className="userAvatar sentAvatar" size={32} />
+              </div>
         </div>
         )
         : (
           <div className="messageContainer justifyStart">
+                <div className="avatarContainer">
+                    <UserCircle className="userAvatar receivedAvatar" size={32} />
+                </div>
             <div className="messageBox backgroundLight">
               <p className="sentText ">{user}</p>
               <p className="messageText colorDark">{ReactEmoji.emojify(text)}</p>
