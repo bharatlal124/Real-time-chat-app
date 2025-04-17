@@ -5,6 +5,7 @@
   "dependencies": {
     "16": "^0.0.2",
     "axios": "^1.8.4",
+    "lucide-react": "^0.488.0",
     "query-string": "^6.8.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
