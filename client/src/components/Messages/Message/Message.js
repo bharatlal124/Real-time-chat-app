@@ -24,14 +24,14 @@ const Message = ({ message: { text, user }, name }) => {
             <p className="messageText colorWhite">{ReactEmoji.emojify(text)}</p>
           </div>
               <div className="avatarContainer">
-                  <UserCircle className="userAvatar sentAvatar" size={32} />
+                  <UserCircle className="userAvatar sentAvatar" size={28} />
               </div>
         </div>
         )
         : (
           <div className="messageContainer justifyStart">
                 <div className="avatarContainer">
-                    <UserCircle className="userAvatar receivedAvatar" size={32} />
+                    <UserCircle className="userAvatar receivedAvatar" size={28} />
                 </div>
             <div className="messageBox backgroundLight">
               <p className="sentText ">{user}</p>
