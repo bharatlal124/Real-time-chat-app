@@ -1,4 +1,5 @@
 import React from 'react';
+import { UserCircle } from "lucide-react"
 import './Message.css';
 import ReactEmoji from 'react-emoji';
 
