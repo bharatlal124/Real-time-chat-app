@@ -1,10 +1,10 @@
-// models/Message.js
 const mongoose = require("mongoose");
 
 const messageSchema = new mongoose.Schema({
-  user: String,
-  room: String,
   text: String,
+  image: String,
+  room: String,
+  senderId: String,
   timestamp: { type: Date, default: Date.now },
 });
 
