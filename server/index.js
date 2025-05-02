@@ -149,7 +149,7 @@ io.on('connection', (socket) => {
   //   callback();
   // });
 
-  socket.on('sendMessage', async ({ text, image, name }, callback) => {
+  socket.on('sendMessage', async ({ text, image }, callback) => {
     const user = getUser(socket.id);
   
     const messageData = {
