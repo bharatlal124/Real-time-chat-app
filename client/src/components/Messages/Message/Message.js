@@ -49,7 +49,7 @@ const Message = ({ message, name }) => {
         <div className="messageBox backgroundLight  ">
           <p className="sentText">{message.user}</p>
           {message.text && typeof message.text === 'string' && (
-  <p className="messageText colorWhite">
+  <p className="messageText colorDark">
     {ReactEmoji.emojify(message.text)}
   </p>
 )}
