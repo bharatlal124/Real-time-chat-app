@@ -9,7 +9,7 @@ const Message = ({ message, name }) => {
   return (
     isSentByCurrentUser ? (
       <div className="messageContainer justifyEnd">
-        <div className="messageBox2 backgroundBlue glassMessageBox sentGlass">
+        <div className="messageBox2 backgroundBlue  ">
           <p className="sentText">{trimmedName}</p>
           {message.text && typeof message.text === 'string' && (
   <p className="messageText colorWhite">
@@ -36,10 +36,16 @@ const Message = ({ message, name }) => {
             />
           )} */}
         </div>
+          <div className="avatarContainer">
+                  <UserCircle className="userAvatar sentAvatar" size={28} />
+              </div>
       </div>
     ) : (
       <div className="messageContainer justifyStart">
-        <div className="messageBox backgroundLight glassMessageBox receivedGlass">
+      <div className="avatarContainer">
+                    <UserCircle className="userAvatar receivedAvatar" size={28} />
+                </div>
+        <div className="messageBox backgroundLight  ">
           <p className="sentText">{message.user}</p>
           {message.text && typeof message.text === 'string' && (
   <p className="messageText colorWhite">
