@@ -43,10 +43,13 @@ mongoose
   .catch((err) => console.error("❌ MongoDB connection error:", err));
 
 // Serve static image files from uploads folder
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+// app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Add the image upload route
-app.use("/api/upload", uploadRoute);
+// app.use("/api/upload", uploadRoute);
+app.use(express.json());
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/upload', uploadRoute);
 
 
 
