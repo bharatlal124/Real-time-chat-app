@@ -86,34 +86,64 @@ const Chat = ({ location }) => {
   //     socket.emit('sendMessage', message, () => setMessage(''));
   //   }
   // };
+// Send MESSAGE 
+  // const sendMessage = (event) => {
+  //   event.preventDefault();
+  
+  //   if (message || imageFile) {
+  //     const reader = new FileReader();
+  
+  //     if (imageFile) {
+  //       reader.onloadend = () => {
+  //         // send message with image as base64
+  //         socket.emit('sendMessage', {
+  //           text: message,
+  //           image: reader.result, // base64 encoded string
+  //         }, () => {
+  //           setMessage('');
+  //           setImageFile(null); // reset image
+  //         });
+  //       };
+  //       reader.readAsDataURL(imageFile); // convert image to base64
+  //       console.log("image",imageFile);
+  //     } else {
+  //       socket.emit('sendMessage', {
+  //         text: message,
+  //         image: null,
+  //       }, () => setMessage(''));
+  //     }
+  //   }
+  // };
 
-  const sendMessage = (event) => {
-    event.preventDefault();
-  
-    if (message || imageFile) {
-      const reader = new FileReader();
-  
-      if (imageFile) {
-        reader.onloadend = () => {
-          // send message with image as base64
-          socket.emit('sendMessage', {
-            text: message,
-            image: reader.result, // base64 encoded string
-          }, () => {
-            setMessage('');
-            setImageFile(null); // reset image
-          });
-        };
-        reader.readAsDataURL(imageFile); // convert image to base64
-        console.log("image",imageFile);
-      } else {
-        socket.emit('sendMessage', {
-          text: message,
-          image: null,
-        }, () => setMessage(''));
-      }
+
+  const sendMessage = async (e) => {
+  e.preventDefault();
+
+  let imageUrl = null;
+
+  if (imageFile) {
+    const formData = new FormData();
+    formData.append('image', imageFile);
+
+    try {
+      const response = await axios.post('http://localhost:5000/upload', formData);
+      imageUrl = response.data.imageUrl;
+    } catch (err) {
+      console.error("Image upload failed:", err);
+      return;
     }
-  };
+  }
+
+  if (message || imageUrl) {
+    socket.emit('sendMessage', {
+      text: message,
+      image: imageUrl,
+    }, () => {
+      setMessage('');
+      setImageFile(null);
+    });
+  }
+};
 
   return (
     <div className="outerContainer">
