@@ -15,11 +15,20 @@ const uploadRoute = require("./routes/upload");
 
 const app = express();
 const server = http.createServer(app);
-const io = socketio(server, {
-  // cors: { origin: "http://localhost:3000", credentials: true },
-  origin: ["http://localhost:3000", "https://bharat-chat-app.vercel.app"], // ✅ Add your Vercel frontend domain here
-  credentials: true,
+// const io = socketio(server, {
+//   // cors: { origin: "http://localhost:3000", credentials: true },
+//   origin: ["http://localhost:3000", "https://bharat-chat-app.vercel.app"], // ✅ Add your Vercel frontend domain here
+//   methods: ["GET", "POST"],
+//   credentials: true,
+// });
+const io = require("socket.io")(server, {
+  cors: {
+    origin: ["http://localhost:3000", "https://bharat-chat-app.vercel.app"],
+    methods: ["GET", "POST"],
+    credentials: true
+  }
 });
+
 
 app.use(cors());
 app.use(router);
