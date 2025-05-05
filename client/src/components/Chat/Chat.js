@@ -126,7 +126,7 @@ const Chat = ({ location }) => {
     formData.append('image', imageFile);
 
     try {
-      const response = await axios.post('http://localhost:5000/upload', formData);
+      const response = await axios.post('https://real-time-chat-app-cisd.onrender.com/upload', formData);
       imageUrl = response.data.imageUrl;
     } catch (err) {
       console.error("Image upload failed:", err);
