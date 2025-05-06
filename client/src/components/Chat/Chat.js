@@ -24,6 +24,8 @@ const Chat = ({ location }) => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const [imageFile, setImageFile] = useState(null);
+  const [sending, setSending] = useState(false);
+
 
 
   // 🔁 On mount: get name & room from query params, connect to socket, fetch messages
@@ -119,6 +121,9 @@ const Chat = ({ location }) => {
   const sendMessage = async (e) => {
   e.preventDefault();
 
+  if (sending) return; // ⛔ Prevent multiple sends
+  setSending(true);     // 🚫 Lock sending
+
   let imageUrl = null;
 
   if (imageFile) {
@@ -126,10 +131,14 @@ const Chat = ({ location }) => {
     formData.append('image', imageFile);
 
     try {
-      const response = await axios.post('https://real-time-chat-app-cisd.onrender.com/upload', formData);
+      const response = await axios.post(
+        'https://real-time-chat-app-cisd.onrender.com/upload',
+        formData
+      );
       imageUrl = response.data.imageUrl;
     } catch (err) {
       console.error("Image upload failed:", err);
+      setSending(false); // 🔓 Unlock if error
       return;
     }
   }
@@ -141,9 +150,13 @@ const Chat = ({ location }) => {
     }, () => {
       setMessage('');
       setImageFile(null);
+      setSending(false); // ✅ Unlock after send
     });
+  } else {
+    setSending(false); // ✅ Unlock if nothing to send
   }
 };
+
 
   return (
     <div className="outerContainer">
