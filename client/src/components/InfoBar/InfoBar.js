@@ -5,14 +5,26 @@ import closeIcon from '../../icons/closeIcon.png';
 
 import './InfoBar.css';
 
-const InfoBar = ({ room }) => (
+// const InfoBar = ({ room }) => (
+//   <div className="infoBar">
+//     <div className="leftInnerContainer">
+//       <img className="onlineIcon" src={onlineIcon} alt="online icon" />
+//       <h3>{room}</h3>
+//     </div>
+//     <div className="rightInnerContainer">
+//       <a href="/"><img src={closeIcon} alt="close icon" /></a>
+//     </div>
+//   </div>
+// );
+const InfoBar = ({ room, typingUser }) => (
   <div className="infoBar">
     <div className="leftInnerContainer">
-      <img className="onlineIcon" src={onlineIcon} alt="online icon" />
+    <img className="onlineIcon" src={onlineIcon} alt="online icon" />
       <h3>{room}</h3>
     </div>
     <div className="rightInnerContainer">
-      <a href="/"><img src={closeIcon} alt="close icon" /></a>
+    <a href="/"><img src={closeIcon} alt="close icon" /></a>
+      {typingUser && <p className="typing-indicator">{typingUser} is typing...</p>}
     </div>
   </div>
 );
