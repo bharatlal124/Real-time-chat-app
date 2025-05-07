@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Input.css';
 
-const Input = ({ setMessage, sendMessage, message, handleImageChange, imageFile }) => (
+const Input = ({ setMessage, sendMessage, message, handleImageChange, imageFile, handleTyping  }) => (
   
   // <form className="form">
   //   <input
@@ -24,7 +24,7 @@ const Input = ({ setMessage, sendMessage, message, handleImageChange, imageFile 
     type="text"
     placeholder="Type a message..."
     value={message}
-    onChange={({ target: { value } }) => setMessage(value)}
+    onChange={({ target: { value } }) => {setMessage(value); handleTyping();}}
     onKeyPress={(event) => event.key === 'Enter' ? sendMessage(event) : null}
   />
 
