@@ -4,7 +4,7 @@ import onlineIcon from '../../icons/onlineIcon.png';
 
 import './TextContainer.css';
 
-const TextContainer = ({ users }) => (
+const TextContainer = ({ users,  typingUsers }) => (
   <div className="textContainer">
     <div>
        {/* <h1>Realtime Chat Application <span role="img" aria-label="emoji">💬</span></h1> */}
@@ -21,6 +21,11 @@ const TextContainer = ({ users }) => (
                 {users.map(({name}) => (
                   <div key={name} className="activeItem">
                     {name}
+                  {typingUsers && typingUsers.includes(name) && (
+                    <span style={{ marginLeft: '8px', color: 'gray', fontStyle: 'italic' }}>
+                      typing...
+                    </span>
+                  )}
                     <img alt="Online Icon" src={onlineIcon}/>
                   </div>
                 ))}
