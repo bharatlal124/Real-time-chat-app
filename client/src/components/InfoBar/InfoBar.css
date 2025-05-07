@@ -26,3 +26,9 @@
 .onlineIcon {
   margin-right: 5%;
 }
+.typing-indicator {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #a0a0a0;
+  margin-left: 10px;
+}
