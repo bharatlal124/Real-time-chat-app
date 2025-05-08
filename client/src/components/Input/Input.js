@@ -47,14 +47,14 @@ const Input = ({ setMessage, sendMessage, message, handleImageChange, imageFile,
     +
   </label>
 
-  // <button className="sendButton" onClick={e => sendMessage(e)}>Send</button>
-    <button
-  className="sendButton"
-  onClick={(e) => sendMessage(e)}
-  disabled={sending}  // 🔒 Disable while sending
->
-  {sending ? 'Sending...' : 'Send'}
-</button>
+ <button className="sendButton" onClick={e => sendMessage(e)}>Send</button>
+//     <button
+//   className="sendButton"
+//   onClick={(e) => sendMessage(e)}
+//   disabled={sending}  // 🔒 Disable while sending
+// >
+//   {sending ? 'Sending...' : 'Send'}
+// </button>
 
 </form>
 
