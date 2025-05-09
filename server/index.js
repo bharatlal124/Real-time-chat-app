@@ -180,13 +180,13 @@ io.on('connection', (socket) => {
   });
   
 
-  socket.on('typing', ({ room, name }) => {
-  socket.to(room).emit('userTyping', name);
-});
+//   socket.on('typing', ({ room, name }) => {
+//   socket.to(room).emit('userTyping', name);
+// });
 
-socket.on('stopTyping', ({ room }) => {
-  socket.to(room).emit('userStopTyping', socket.username);
-});
+// socket.on('stopTyping', ({ room }) => {
+//   socket.to(room).emit('userStopTyping', socket.username);
+// });
   
   socket.on('disconnect', () => {
     const user = removeUser(socket.id);
