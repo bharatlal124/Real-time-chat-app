@@ -87,19 +87,17 @@ let typingTimeout;
     }
   }, [message, name, room]);
 
-  useEffect(() => {
-    socket.on('userTyping', (userName) => {
-      setTypingUsers(prev => {
-        if (!prev.includes(userName)) {
-          return [...prev, userName];
-        }
-        return prev;
-      });
-    });
-  
-    socket.on('userStopTyping', (userName) => {
-      setTypingUsers(prev => prev.filter(u => u !== userName));
-    });
+  socket.on('typing', (name) => {
+  setTypingUsers((prev) => {
+    if (!prev.includes(name)) return [...prev, name];
+    return prev;
+  });
+});
+
+socket.on('stopTyping', (name) => {
+  setTypingUsers((prev) => prev.filter((user) => user !== name));
+});
+
   
     return () => {
       socket.off('userTyping');
