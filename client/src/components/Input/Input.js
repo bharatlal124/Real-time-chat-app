@@ -2,7 +2,7 @@ import React from 'react';
 // import { useEffect, useRef } from 'react';
 import './Input.css';
 
-const Input = ({ setMessage, sendMessage, message, handleImageChange, imageFile   }) => {
+const Input = ({ setMessage, sendMessage, message, handleImageChange, imageFile   }) => (
   
   // <form className="form">
   //   <input
@@ -84,7 +84,7 @@ const Input = ({ setMessage, sendMessage, message, handleImageChange, imageFile 
 //       <label htmlFor="fileInput" className="uploadIcon">+</label>
 //       <button className="sendButton" onClick={sendMessage}>Send</button>
 //     </form>
-//   );
+  );
 // };
 
 export default Input;
