@@ -207,7 +207,8 @@ const handleTyping = () => {
   sendMessage={sendMessage}
   handleImageChange={handleImageChange}
   imageFile={imageFile}
-    handleTyping={handleTyping}
+    // handleTyping={handleTyping}
+    socket={socket}
 />
         </div>
       <TextContainer users={users} typingUsers={typingUsers} />
