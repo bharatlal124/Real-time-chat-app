@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { useEffect, useRef } from 'react';
 import './Input.css';
 
 const Input = ({ setMessage, sendMessage, message, handleImageChange, imageFile, socket   }) => {
