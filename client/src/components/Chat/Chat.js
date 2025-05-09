@@ -99,11 +99,11 @@ socket.on('stopTyping', (name) => {
 });
 
   
-    return () => {
-      socket.off('userTyping');
-      socket.off('userStopTyping');
-    };
-  }, []);
+  //   return () => {
+  //     socket.off('userTyping');
+  //     socket.off('userStopTyping');
+  //   };
+  // }, []);
   
   
   const handleImageChange = (e) => {
