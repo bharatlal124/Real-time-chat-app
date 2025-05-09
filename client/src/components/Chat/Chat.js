@@ -25,9 +25,9 @@ const Chat = ({ location }) => {
   const [messages, setMessages] = useState([]);
   const [imageFile, setImageFile] = useState(null);
   const [sending, setSending] = useState(false);
-   const [typingUsers, setTypingUsers] = useState([]);
+   // const [typingUsers, setTypingUsers] = useState([]);
 
-let typingTimeout;
+// let typingTimeout;
 
   // 🔁 On mount: get name & room from query params, connect to socket, fetch messages
   useEffect(() => {
@@ -79,24 +79,24 @@ let typingTimeout;
   }, []);
 
 
-  useEffect(() => {
-    if (message) {
-      socket.emit('typing', { user: name, room });
-    } else {
-      socket.emit('stopTyping', { room });
-    }
-  }, [message, name, room]);
+//   useEffect(() => {
+//     if (message) {
+//       socket.emit('typing', { user: name, room });
+//     } else {
+//       socket.emit('stopTyping', { room });
+//     }
+//   }, [message, name, room]);
 
-  socket.on('typing', (name) => {
-  setTypingUsers((prev) => {
-    if (!prev.includes(name)) return [...prev, name];
-    return prev;
-  });
-});
+//   socket.on('typing', (name) => {
+//   setTypingUsers((prev) => {
+//     if (!prev.includes(name)) return [...prev, name];
+//     return prev;
+//   });
+// });
 
-socket.on('stopTyping', (name) => {
-  setTypingUsers((prev) => prev.filter((user) => user !== name));
-});
+// socket.on('stopTyping', (name) => {
+//   setTypingUsers((prev) => prev.filter((user) => user !== name));
+// });
 
   
   //   return () => {
@@ -145,15 +145,15 @@ socket.on('stopTyping', (name) => {
   //     }
   //   }
   // };
-const handleTyping = () => {
-    socket.emit('typing', { name, room });
+// const handleTyping = () => {
+//     socket.emit('typing', { name, room });
   
-    if (typingTimeout) clearTimeout(typingTimeout);
+//     if (typingTimeout) clearTimeout(typingTimeout);
   
-    typingTimeout = setTimeout(() => {
-      socket.emit('stopTyping', { room });
-    }, 1000); // stop typing after 1s of inactivity
-  };
+//     typingTimeout = setTimeout(() => {
+//       socket.emit('stopTyping', { room });
+//     }, 1000); // stop typing after 1s of inactivity
+//   };
 
 
   const sendMessage = async (e) => {
@@ -208,10 +208,10 @@ const handleTyping = () => {
   handleImageChange={handleImageChange}
   imageFile={imageFile}
     // handleTyping={handleTyping}
-    socket={socket}
+    // socket={socket}
 />
         </div>
-      <TextContainer users={users} typingUsers={typingUsers} />
+      <TextContainer users={users}   />
     </div>
   );
 };
